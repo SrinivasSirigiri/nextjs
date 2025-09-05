@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
+// @ts-ignore
+import Swal from 'sweetalert2';
 import styles from "./birthdays.module.css";
 import {CONTACTS_MOCK} from "@/app/mock/contacts";
 
@@ -213,20 +215,88 @@ export default function Birthdays() {
   };
 
   const handleDelete = async (contactId: string) => {
-    if (window.confirm('Are you sure you want to delete this contact?')) {
+    const contact = contacts.find(c => c.id === contactId);
+    const contactName = contact ? `${contact.firstName} ${contact.lastName}` : 'this contact';
+    
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      html: `You are about to delete <span class="font-bold text-blue-600">${contactName}</span>.<br> This action cannot be undone!`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel',
+      reverseButtons: true,
+      customClass: {
+        popup: 'swal2-popup-compact',
+        title: 'swal2-title-compact',
+        htmlContainer: 'swal2-content-compact',
+        actions: 'swal2-actions-compact'
+      },
+      width: '380px',
+      padding: '0.8rem'
+    });
+
+    if (result.isConfirmed) {
       try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/contacts/${contactId}`, {
           method: 'DELETE',
         });
 
         if (response.ok) {
+          // Show success message
+          Swal.fire({
+            title: 'Deleted!',
+            text: `${contactName} has been deleted successfully.`,
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false,
+            customClass: {
+              popup: 'swal2-popup-compact',
+              title: 'swal2-title-compact',
+              htmlContainer: 'swal2-content-compact'
+            },
+            width: '320px',
+            padding: '0.8rem'
+          });
+          
           // Refresh contacts list
           await fetchContacts();
         } else {
-          console.error('Failed to delete contact');
+          // Show error message
+          Swal.fire({
+            title: 'Error!',
+            text: 'Failed to delete the contact. Please try again.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+            customClass: {
+              popup: 'swal2-popup-compact',
+              title: 'swal2-title-compact',
+              htmlContainer: 'swal2-content-compact',
+              actions: 'swal2-actions-compact'
+            },
+            width: '320px',
+            padding: '0.8rem'
+          });
         }
       } catch (error) {
         console.error('Error deleting contact:', error);
+        // Show error message
+        Swal.fire({
+          title: 'Error!',
+          text: 'An error occurred while deleting the contact. Please try again.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+          customClass: {
+            popup: 'swal2-popup-compact',
+            title: 'swal2-title-compact',
+            htmlContainer: 'swal2-content-compact',
+            actions: 'swal2-actions-compact'
+          },
+          width: '320px',
+          padding: '0.8rem'
+        });
       }
     }
   };

@@ -110,7 +110,7 @@ export default function RootLayout({
         </section>
         <Toaster position="top-right" reverseOrder={false}
          toastOptions={{
-            duration: 5000, // 6 seconds for all toasts
+            duration: 3000, // 3 seconds for all toasts
             style: {
               minWidth: "400px",
               padding: "16px",

@@ -59,3 +59,77 @@ li a:hover, li a[data-active="true"] {
   background-color: #474e5d;
   color: white;
 }
+
+/* SweetAlert2 Compact Styles */
+.swal2-popup-compact {
+  padding: 0.4rem !important;
+  border-radius: 8px !important;
+}
+
+.swal2-title-compact {
+  font-size: 1rem !important;
+  margin-bottom: 0.3rem !important;
+  line-height: 1.2 !important;
+}
+
+.swal2-content-compact {
+  font-size: 0.8rem !important;
+  margin-bottom: 0.3rem !important;
+  line-height: 1.3 !important;
+}
+
+.swal2-actions-compact {
+  margin-top: 0.3rem !important;
+  gap: 0.4rem !important;
+}
+
+.swal2-actions-compact .swal2-styled {
+  padding: 0.4rem 0.8rem !important;
+  font-size: 0.8rem !important;
+}
+
+.swal2-icon {
+  margin-bottom: 0.3rem !important;
+  margin-top: 0.2rem !important;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+}
+
+.swal2-icon .swal2-icon-content {
+  font-size: 1.2rem !important;
+}
+
+/* Tailwind-like classes for SweetAlert content */
+.font-bold {
+  font-weight: 700 !important;
+}
+
+.text-red-600 {
+  color: #dc2626 !important;
+}
+
+.text-red-500 {
+  color: #ef4444 !important;
+}
+
+.text-green-600 {
+  color: #16a34a !important;
+}
+
+.text-blue-600 {
+  color: #2563eb !important;
+}
+
+.text-gray-600 {
+  color: #4b5563 !important;
+}
+
+.text-sm {
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+}
+
+.text-lg {
+  font-size: 1.125rem !important;
+  line-height: 1.75rem !important;
+}
