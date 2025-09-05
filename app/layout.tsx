@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast"; 
 import Link from "next/link";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -63,6 +64,22 @@ export default function RootLayout({
   }
   return (
     <html lang="en">
+      <head>
+       {/* Google tag (gtag.js) */}
+       <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-66W3Z6YZVE"
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-66W3Z6YZVE');
+          `}
+        </Script>
+
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
       <section className={'container'}>
         <div className="flex justify-between">
