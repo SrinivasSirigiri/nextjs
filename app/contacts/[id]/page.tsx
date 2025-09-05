@@ -9,7 +9,6 @@ export default async function ContactView({ params }: { params: { id: string } }
         const data = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/contacts`)
         const contacts = await data.json();
         contactItem = contacts.find((contact:any) => contact.id === id );
-        console.log(contactItem);
     }
     
     return ( 

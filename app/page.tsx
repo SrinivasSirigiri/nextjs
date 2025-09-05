@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 export default function Home() {
   const [username, setUsername] = useState("");
@@ -28,30 +29,40 @@ export default function Home() {
     }
   }
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center p-8 pb-20 gap-16 sm:p-20">
-      <p>Login Page !</p>
-      <div className="flex items-center justify-center bg-gray-100 p-5 rounded-xl">
-        <form onSubmit={handleLogin} className="bg-white p-8 rounded-2xl shadow-md w-96">
-        
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
+    <div className="min-h-screen flex flex-col items-center justify-center bg-white p-4">
+      {/* Logo Section */}
+      <div className="mb-8 text-center">
+        <Image src='/LOGO.png' alt='isoWhiz Logo' width={250} height={100} className="mx-auto" />
+        <p className="text-red-500 text-sm mt-2">Login!</p>
+      </div>
 
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
+      {/* Login Form */}
+      <div className="w-full max-w-md">
+        <form onSubmit={handleLogin} className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+          <div className="space-y-4">
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+            />
 
-          <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
-            Sign In
-          </button>
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+            />
+
+            <button 
+              type="submit" 
+              className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition-colors font-medium"
+            >
+              Sign In
+            </button>
+          </div>
         </form>
       </div>
     </div>
