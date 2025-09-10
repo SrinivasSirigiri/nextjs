@@ -33,7 +33,7 @@ export default function Home() {
       {/* Logo Section */}
       <div className="mb-8 text-center">
         <Image src='/LOGO.png' alt='isoWhiz Logo' width={250} height={100} className="mx-auto" />
-        <p className="text-red-500 text-sm mt-2">Login!</p>
+        <p className="text-red-500 text-sm mt-4">Login!</p>
       </div>
 
       {/* Login Form */}
@@ -58,8 +58,7 @@ export default function Home() {
 
             <button 
               type="submit" 
-              className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition-colors font-medium"
-            >
+              className="mt-[18px] w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition-colors font-medium">
               Sign In
             </button>
           </div>

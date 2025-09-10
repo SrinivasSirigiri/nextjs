@@ -30,10 +30,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  // console.log(pathname);
+  console.log(pathname);
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const protectedRoutes = ["/about", "/services", "/contacts", "/chat"];
 
   const checkAuth = () => {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
@@ -44,7 +46,10 @@ export default function RootLayout({
       setUsername(storedUser || "");
     } else {
       setLoggedIn(false);
-      if (pathname !== "/") router.push("/");
+      if (protectedRoutes.includes(pathname)) {
+        router.push("/");
+        toast.error("Please login to access this page.");
+      }
     }
   };
 
@@ -88,6 +93,7 @@ export default function RootLayout({
               <li><Link href="/about" data-active={pathname === '/about'}>About</Link></li>
               <li><Link href="/services/csr">Services</Link></li>
               <li><Link href="/contacts" data-active={pathname === '/contacts'}>Contact</Link></li>
+              <li><Link href="/chat" data-active={pathname === '/chat'}>Chat</Link></li>
           </ul>
       
           {loggedIn ? (
